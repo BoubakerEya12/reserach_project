@@ -14,8 +14,8 @@
 #         results/fig_p2_compare.png
 #
 # Run from the project root as:
-#   python -m scripts.plot_p2_compare --N_mc 2000 --gammas "-5,0,5,10,15,20"
-# ----------------------------------------------------------
+#   python -m scripts.plot_p2_compare --N_mc 2000 --gammas "-5,0,5,10,15,20"  / 
+# ------------------------- python -m scripts.plot_p2_compare --N_mc 2000 --gammas "-5 0 5 10 15 20"
 
 import os
 import re
