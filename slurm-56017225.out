@@ -1,0 +1,5 @@
+[DEBUG] running: /home/eyabou12/mtl_project/master1-main/scripts/plot_fig5_2.py
+usage: plot_fig5_2.py [-h] [--samples SAMPLES] [--seed SEED]
+                      [--mode {small,large,both}] [--save] [--outdir OUTDIR]
+                      [--no-show] [--snr-max SNR_MAX] [--verbose]
+plot_fig5_2.py: error: unrecognized arguments: --snr-step 6

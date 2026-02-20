@@ -1,0 +1,138 @@
+=== JOB INFO ===
+JobID: 56105662
+Node : nc10546
+Start: Wed 04 Feb 2026 06:50:14 PM EST
+===============
+/home/eyabou12/venv_mtl/bin/python
+numpy OK: 2.2.2
+[DEBUG] running: /home/eyabou12/mtl_project/master1-main/scripts/plot_fig5_opt.py
+[noise] sigma² = 1.800e-15 W
+SNR grid (dB): [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
+mode: small | samples: 100
+[DEBUG] outdir: /home/eyabou12/mtl_project/master1-main/figs/fig5_opt_small_56105662
+[P1-OPT] SNR=0 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=3 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=6 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=9 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=12 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=15 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=18 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=21 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=24 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=27 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=30 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+Saved: figs/fig5_opt_small_56105662/fig5_a_opt.png
+[SAVE-CHECK] png: /home/eyabou12/mtl_project/master1-main/figs/fig5_opt_small_56105662/fig5_a_opt.png | exists=True | size=193940 bytes
+[SAVE-CHECK] csv: /home/eyabou12/mtl_project/master1-main/figs/fig5_opt_small_56105662/fig5_a_opt.csv | exists=True | size=281 bytes
+Saved: figs/fig5_opt_small_56105662/fig5_a_opt.csv
+[DONE] small saved to: figs/fig5_opt_small_56105662
+[DEBUG] running: /home/eyabou12/mtl_project/master1-main/scripts/plot_fig5_opt.py
+[noise] sigma² = 1.800e-15 W
+SNR grid (dB): [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
+mode: large | samples: 100
+[DEBUG] outdir: /home/eyabou12/mtl_project/master1-main/figs/fig5_opt_large_56105662
+[P1-OPT] SNR=0 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=3 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=6 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=9 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=12 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=15 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=18 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=21 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=24 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=27 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+[P1-OPT] SNR=30 dB | samples=100
+   sample 20/100
+   sample 40/100
+   sample 60/100
+   sample 80/100
+Saved: figs/fig5_opt_large_56105662/fig5_b_opt.png
+[SAVE-CHECK] png: /home/eyabou12/mtl_project/master1-main/figs/fig5_opt_large_56105662/fig5_b_opt.png | exists=True | size=195109 bytes
+[SAVE-CHECK] csv: /home/eyabou12/mtl_project/master1-main/figs/fig5_opt_large_56105662/fig5_b_opt.csv | exists=True | size=288 bytes
+Saved: figs/fig5_opt_large_56105662/fig5_b_opt.csv
+[DONE] large saved to: figs/fig5_opt_large_56105662
+End: Wed 04 Feb 2026 09:28:14 PM EST

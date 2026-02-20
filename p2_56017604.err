@@ -1,0 +1,3 @@
+usage: plot_p2_compare.py [-h] [--N_mc N_MC] [--gammas GAMMAS] [--seed SEED]
+                          [--outdir OUTDIR]
+plot_p2_compare.py: error: argument --gammas: expected one argument

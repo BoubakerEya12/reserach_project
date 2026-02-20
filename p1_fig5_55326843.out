@@ -1,0 +1,2 @@
+slurmstepd: error: *** JOB 55326843 ON nc30213 CANCELLED AT 2026-01-19T17:47:03 ***
+slurmstepd: error: --task-epilog failed status=9

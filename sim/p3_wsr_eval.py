@@ -1,10 +1,12 @@
 # sim/p3_wsr_eval.py
 import numpy as np
+import tensorflow as tf
 
 from config import SystemConfig
 from .channels import draw_small_scale
 from .channels_3gpp import gen_large_scale_3gpp_uma
 from .weights import compute_alpha_from_beta
+from .sionna_channel import generate_h_rb_true
 
 
 # =====================================================================
@@ -234,7 +236,8 @@ def select_top_k(scores: np.ndarray, k: int) -> np.ndarray:
 def simulate_one_slot_p3(cfg: SystemConfig,
                          rng: np.random.Generator,
                          mode: str = "zf_beta",
-                         sigma2_override: float | None = None) -> float:
+                         sigma2_override: float | None = None,
+                         h_rb_override: np.ndarray | None = None) -> float:
     """
     Simule un slot complet pour P3 et retourne la WSR (bits/s/Hz).
 
@@ -254,24 +257,34 @@ def simulate_one_slot_p3(cfg: SystemConfig,
     # Bruit
     sigma2 = float(cfg.sigma2 if sigma2_override is None else sigma2_override)
 
-    # --- 1) Large-scale 3GPP pour tous les utilisateurs ---
-    beta, is_los, d2d_m = gen_large_scale_3gpp_uma(
-        K=K,
-        fc_GHz=cfg.fc_GHz,
-        h_bs=cfg.h_bs,
-        h_ut=cfg.h_ut,
-        los_mode=cfg.los_mode,
-        cell_radius_m=cfg.cell_radius_m,
-        rng=rng
-    )  # beta : [K]
+    # --- 1) Large-scale + small-scale (Sionna) OR legacy 3GPP+Rayleigh ---
+    if h_rb_override is not None:
+        # h_rb_override: [K, N_RB, M] already includes large+small scale
+        H_rb_all = h_rb_override
+        beta_raw = np.mean(np.abs(H_rb_all) ** 2, axis=(1, 2))
+        beta_ref = np.median(beta_raw)
+        if beta_ref <= 0:
+            beta_ref = 1.0
+        # Normalize overall scale so median large-scale power ~ 1
+        H_rb_all = H_rb_all / np.sqrt(beta_ref)
+        beta = beta_raw / beta_ref
+    else:
+        beta, is_los, d2d_m = gen_large_scale_3gpp_uma(
+            K=K,
+            fc_GHz=cfg.fc_GHz,
+            h_bs=cfg.h_bs,
+            h_ut=cfg.h_ut,
+            los_mode=cfg.los_mode,
+            cell_radius_m=cfg.cell_radius_m,
+            rng=rng
+        )  # beta : [K]
 
-    # 🔵 NORMALISATION POUR P3 UNIQUEMENT
-    # On garde les différences de path loss entre utilisateurs,
-    # mais on remet l'échelle globale pour avoir une médiane ~ 1 (0 dB).
-    beta_ref = np.median(beta)
-    if beta_ref <= 0:
-        beta_ref = 1.0
-    beta = beta / beta_ref
+    # 🔵 NORMALISATION POUR P3 UNIQUEMENT (legacy pathloss case)
+    if h_rb_override is None:
+        beta_ref = np.median(beta)
+        if beta_ref <= 0:
+            beta_ref = 1.0
+        beta = beta / beta_ref
 
     # Poids alpha pour P3 (sum alpha_u = K par construction)
     alpha = compute_alpha_from_beta(beta)  # [K]
@@ -280,10 +293,13 @@ def simulate_one_slot_p3(cfg: SystemConfig,
 
     # --- 2) Boucle sur les RB ---
     for n in range(N_RB):
-        # Small-scale Rayleigh pour ce RB
-        H_ss = draw_small_scale(K=K, M=M, rng=rng)   # [K, M]
-        # Canal effectif : sqrt(beta_u) * h_{u}
-        H_eff_all = (np.sqrt(beta)[:, None].astype(np.complex64)) * H_ss  # [K, M]
+        if h_rb_override is not None:
+            H_eff_all = H_rb_all[:, n, :]  # [K, M]
+        else:
+            # Small-scale Rayleigh pour ce RB
+            H_ss = draw_small_scale(K=K, M=M, rng=rng)   # [K, M]
+            # Canal effectif : sqrt(beta_u) * h_{u}
+            H_eff_all = (np.sqrt(beta)[:, None].astype(np.complex64)) * H_ss  # [K, M]
 
         if mode == "mrt_single":
             # On sert un seul utilisateur : celui avec le plus grand alpha*beta
@@ -349,11 +365,20 @@ def evaluate_p3_wsr_at_snr(cfg: SystemConfig,
     sigma2 = cfg.P_RB_max / snr_lin
 
     rng = np.random.default_rng(seed)
+    tf.random.set_seed(seed)
+
+    # Pre-generate Sionna UMa channels at RB level: [B,K,N_RB,M]
+    h_rb_true = generate_h_rb_true(cfg, batch_size=n_slots)
+    h_rb_true_np = h_rb_true.numpy()
+
     vals = np.zeros(n_slots, dtype=np.float64)
     for t in range(n_slots):
-        vals[t] = simulate_one_slot_p3(cfg, rng,
-                                       mode=mode,
-                                       sigma2_override=sigma2)
+        vals[t] = simulate_one_slot_p3(
+            cfg, rng,
+            mode=mode,
+            sigma2_override=sigma2,
+            h_rb_override=h_rb_true_np[t]
+        )
     return float(vals.mean()), float(vals.std())
 
 

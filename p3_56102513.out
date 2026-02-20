@@ -1,0 +1,30 @@
+=== P3 WSR vs SNR (WMMSE only) ===
+M=8, K=16, N_RB=8, U_max=2
+Per-RB power cap P_RB_max = 2.00 W
+Mode: wmmse_alpha_beta
+SNR grid: [ 0.  5. 10. 15. 20. 25. 30.] dB
+Monte-Carlo: 10000 slots par point
+
+SNR = 0.0 dB
+  WMMSE (greedy on alpha·beta)   -> mean = 939.670, std = 334.053
+
+SNR = 5.0 dB
+  WMMSE (greedy on alpha·beta)   -> mean = 1063.644, std = 362.563
+
+SNR = 10.0 dB
+  WMMSE (greedy on alpha·beta)   -> mean = 1201.809, std = 383.145
+
+SNR = 15.0 dB
+  WMMSE (greedy on alpha·beta)   -> mean = 1330.043, std = 407.811
+
+SNR = 20.0 dB
+  WMMSE (greedy on alpha·beta)   -> mean = 1466.227, std = 437.011
+
+SNR = 25.0 dB
+  WMMSE (greedy on alpha·beta)   -> mean = 1603.630, std = 461.802
+
+SNR = 30.0 dB
+  WMMSE (greedy on alpha·beta)   -> mean = 1735.996, std = 485.740
+
+CSV sauvegardé dans : /scratch/eyabou12/results_p3_wmmse/p3_wmmse_vs_snr.csv
+Figure sauvegardée dans : /scratch/eyabou12/results_p3_wmmse/p3_wmmse_vs_snr.png

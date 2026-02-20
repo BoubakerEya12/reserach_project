@@ -23,15 +23,16 @@ import argparse
 import itertools
 import numpy as np
 import matplotlib.pyplot as plt
+import tensorflow as tf
 
 from config import SystemConfig
 from scripts.common import (
     make_rng,
     draw_iid_small_scale,   # small-scale Rayleigh H_s: [K, M]
-    effective_channel,      # H_eff = sqrt(beta_u) * H_s
 )
-from sim.channels_3gpp import gen_large_scale_3gpp_uma
+from sim.sionna_channel import generate_h_rb_true
 from sim.exhaustive_teacher import best_group_by_balanced_sinr
+from scripts.evaluate_p1 import evaluate_p1
 
 
 # =============================== DEBUG ===============================
@@ -65,20 +66,26 @@ def clip_sinr(x_lin, max_db=60.0):
     """Clip linear SINR to at most max_db (to stabilize averages)."""
     return min(float(x_lin), 10.0 ** (max_db / 10.0))
 
-def sinr_for_selection(HkM, sel, W_full, sigma2):
+def min_sinr_selected_tf(HkM, sel, W_sel, sigma2):
     """
-    SINRs for selected users 'sel'.
-    HkM : [K,M], W_full : [M,K] with unused columns = 0.
-    Returns sinr_u:[K].
+    Compute min SINR over selected users using evaluate_p1 (TF/GPU).
+    HkM: [K,M], sel: [U], W_sel: [M,U]
     """
-    K, M = HkM.shape
-    HW = HkM @ W_full      # [K,K]
-    sinr_u = np.zeros(K, dtype=np.float64)
-    for u in sel:
-        sig = np.abs(HW[u, u]) ** 2
-        interf = np.sum(np.abs(HW[u, :]) ** 2) - sig
-        sinr_u[u] = sig / max(interf + sigma2, 1e-30)
-    return sinr_u
+    h_true = tf.convert_to_tensor(HkM[None, :, None, :])
+    sel_t = tf.convert_to_tensor(sel[None, None, :], dtype=tf.int32)
+    W_t = tf.convert_to_tensor(W_sel[None, None, :, :])
+    rho = tf.ones([HkM.shape[0]], dtype=tf.float32)
+
+    out = evaluate_p1(
+        h_true=h_true,
+        sel=sel_t,
+        W=W_t,
+        rho=rho,
+        sigma2=tf.constant(float(sigma2), tf.float32),
+        P_RB_max=tf.constant(1e30, tf.float32),
+        P_tot=tf.constant(1e30, tf.float32),
+    )
+    return float(out["min_sinr_ratio_rb"][0, 0].numpy())
 
 def pick_subset_topU_by_norm(HkM, U_max):
     norms = np.linalg.norm(HkM, axis=1)
@@ -125,24 +132,14 @@ def zf_equal_power_value(HkM, sigma2, P_rb, U_max):
     sel = pick_subset_topU_by_norm(HkM, U_max)
     H_sel = HkM[sel, :]
     V, p, W = build_equal_power_beams(H_sel, sigma2, P_rb, mode="zf")
-    K, M = HkM.shape
-    W_full = np.zeros((M, K), dtype=np.complex64)
-    for j, u in enumerate(sel):
-        W_full[:, u] = W[:, j]
-    sinr_u = sinr_for_selection(HkM, sel, W_full, sigma2)
-    min_lin = float(np.min(sinr_u[sel])) if sel.size > 0 else 0.0
+    min_lin = min_sinr_selected_tf(HkM, sel, W, sigma2) if sel.size > 0 else 0.0
     return max(min_lin, 1e-30)
 
 def rzf_equal_power_value(HkM, sigma2, P_rb, U_max):
     sel = pick_subset_topU_by_norm(HkM, U_max)
     H_sel = HkM[sel, :]
     V, p, W = build_equal_power_beams(H_sel, sigma2, P_rb, mode="rzf")
-    K, M = HkM.shape
-    W_full = np.zeros((M, K), dtype=np.complex64)
-    for j, u in enumerate(sel):
-        W_full[:, u] = W[:, j]
-    sinr_u = sinr_for_selection(HkM, sel, W_full, sigma2)
-    min_lin = float(np.min(sinr_u[sel])) if sel.size > 0 else 0.0
+    min_lin = min_sinr_selected_tf(HkM, sel, W, sigma2) if sel.size > 0 else 0.0
     return max(min_lin, 1e-30)
 
 def exhaustive_equal_power_value(HkM, sigma2, P_rb, U_max, mode="rzf"):
@@ -157,11 +154,7 @@ def exhaustive_equal_power_value(HkM, sigma2, P_rb, U_max, mode="rzf"):
             sel = np.array(comb, dtype=int)
             H_sel = HkM[sel, :]
             V, p, W = build_equal_power_beams(H_sel, sigma2, P_rb, mode=mode)
-            W_full = np.zeros((M, K), dtype=np.complex64)
-            for j, u in enumerate(sel):
-                W_full[:, u] = W[:, j]
-            sinr_u = sinr_for_selection(HkM, sel, W_full, sigma2)
-            min_lin = float(np.min(sinr_u[sel]))
+            min_lin = min_sinr_selected_tf(HkM, sel, W, sigma2)
             if min_lin > best:
                 best = min_lin
     if not np.isfinite(best):
@@ -193,6 +186,19 @@ def run_case(cfg: SystemConfig,
     ys_a_opt, ys_a_zf, ys_a_rzf, ys_a_ex = [], [], [], []
     ys_b_opt, ys_b_zf, ys_b_rzf, ys_b_ex = [], [], [], []
 
+    # Pre-generate 3GPP UMa channels via Sionna (RB-level) if requested.
+    # We select one RB index (default 0) to match the single-RB evaluation here.
+    HkM_eff_samples = None
+    if include_large:
+        if seed is not None:
+            tf.random.set_seed(seed)
+        h_rb_true = generate_h_rb_true(cfg, batch_size=samples)  # [B,K,N_RB,Nt]
+        h_rb_true_np = h_rb_true.numpy()
+        rb_idx = int(getattr(cfg, "rb_index", 0))
+        if rb_idx < 0 or rb_idx >= int(cfg.N_RB):
+            rb_idx = 0
+        HkM_eff_samples = h_rb_true_np[:, :, rb_idx, :]  # [B,K,M]
+
     for snr_db in snr_grid_db:
         P_rb = sigma2 * db2lin(snr_db)
 
@@ -220,7 +226,8 @@ def run_case(cfg: SystemConfig,
                 U_max=U_max,
             )
             if sel_o is not None and sel_o.size > 0:
-                opt_lin = float(np.min(sinr_o[sel_o]))
+                W_sel_o = W_o[:, sel_o]
+                opt_lin = min_sinr_selected_tf(HkM, sel_o, W_sel_o, sigma2)
             else:
                 opt_lin = float(score_lin0)
 
@@ -238,19 +245,9 @@ def run_case(cfg: SystemConfig,
             acc_a["rzf"] += rzf_lin; cnt_a["rzf"] += 1
             acc_a["ex"]  += ex_lin;  cnt_a["ex"]  += 1
 
-            # ---------- Large-scale (3GPP UMa) + small-scale ----------
+            # ---------- Large-scale + small-scale (3GPP UMa via Sionna) ----------
             if include_large:
-                beta, is_los, d2d_m = gen_large_scale_3gpp_uma(
-                    K=K,
-                    fc_GHz=cfg.fc_GHz,
-                    h_bs=cfg.h_bs,
-                    h_ut=cfg.h_ut,
-                    los_mode=cfg.los_mode,
-                    cell_radius_m=cfg.cell_radius_m,
-                    rng=rng,
-                )
-                H_eff = effective_channel(Hs, beta)  # [K,M]
-                HkM_eff = H_eff
+                HkM_eff = HkM_eff_samples[s]
 
                 sel_b, W_b, p_b, sinr_b, score_lin_b = best_group_by_balanced_sinr(
                     Hn=HkM_eff.T,
@@ -259,7 +256,8 @@ def run_case(cfg: SystemConfig,
                     U_max=U_max,
                 )
                 if sel_b is not None and sel_b.size > 0:
-                    opt_lin_b = float(np.min(sinr_b[sel_b]))
+                    W_sel_b = W_b[:, sel_b]
+                    opt_lin_b = min_sinr_selected_tf(HkM_eff, sel_b, W_sel_b, sigma2)
                 else:
                     opt_lin_b = float(score_lin_b)
 

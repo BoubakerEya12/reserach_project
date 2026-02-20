@@ -170,7 +170,7 @@ def gen_large_scale_3gpp_uma(K: int,
     PL_dB = PL_dB + sf   # still in dB
 
     # 5) Convert to LINEAR gain for baseband usage
-    #    This matches your LaTeX: beta_u = 10^{-(PL_dB)/10}
+    #    This matches my7 system: beta_u = 10^{-(PL_dB)/10}
     beta = 10.0 ** (-PL_dB / 10.0)
 
     return beta.astype(np.float32), is_los, d2d_m

@@ -1,0 +1,5 @@
+[noise] sigma² = 1.800e-15 W
+[SNR= 0 dB] sample 0/100000
+[SNR= 0 dB] sample 20000/100000
+[SNR= 0 dB] sample 40000/100000
+slurmstepd: error: *** JOB 55268902 ON nc10308 CANCELLED AT 2026-01-16T04:51:37 DUE TO TIME LIMIT ***

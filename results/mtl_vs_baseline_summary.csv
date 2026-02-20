@@ -1,0 +1,14 @@
+metric,value
+gamma_ref_db,5.0
+p2_opt_power_at_gamma_ref_w,0.4729525465755322
+p2_zf_power_at_gamma_ref_w,1.4901278239826228
+mtl_mean_total_power_w,0.12552675604820251
+mtl_mean_hard_sum_rate_bps,7370.93505859375
+mtl_frac_all_ok,1.0
+ratio_mtl_over_p2_opt,0.2654108894372037
+ratio_mtl_over_p2_zf,0.08423891831823574
+qos_gamma_db,5.0
+qos_user_rate_ok_frac,7.812499825377017e-05
+qos_user_sinr_ok_frac,7.812499825377017e-05
+qos_sample_all_users_rate_ok_frac,0.0
+qos_sample_all_users_sinr_ok_frac,0.0

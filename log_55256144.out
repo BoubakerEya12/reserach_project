@@ -1,0 +1,9 @@
+usage: plot_fig5.py [-h] [--N N] [--K K] [--M M] [--Umax UMAX]
+                    [--samples SAMPLES] [--seed SEED] [--save] [--no-show]
+                    [--verbose] [--N0 N0] [--BRB BRB] [--with-large]
+                    [--with-wmmse] [--n-interf-cells N_INTERF_CELLS]
+                    [--Uint UINT] [--Pint-rel-db PINT_REL_DB]
+                    [--fc-GHz FC_GHZ] [--h-bs H_BS] [--h-ut H_UT]
+                    [--los-mode {prob,always_los,always_nlos}]
+                    [--cell-radius-m CELL_RADIUS_M]
+plot_fig5.py: error: unrecognized arguments: --mode both
