@@ -1,0 +1,324 @@
+2026-02-24 00:34:54.116716: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 00:34:54.179220: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-24 00:34:58.328360: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1771911302.710531  497424 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 9611 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 2080 Ti, pci bus id: 0000:3b:00.0, compute capability: 7.5
+I0000 00:00:1771911302.711838  497424 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 9611 MB memory:  -> device: 1, name: NVIDIA GeForce RTX 2080 Ti, pci bus id: 0000:5e:00.0, compute capability: 7.5
+I0000 00:00:1771911302.712917  497424 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 9610 MB memory:  -> device: 2, name: NVIDIA GeForce RTX 2080 Ti, pci bus id: 0000:af:00.0, compute capability: 7.5
+/home/eboubaker/MTL_Project/research_project/venv_mtl/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:643: UserWarning: A total of 1 objects could not be loaded. Example error message for object <Dense name=dense_3, built=True>:
+
+Layer 'dense_3' expected 2 variables, but received 0 variables during loading. Expected: ['kernel', 'bias']
+
+List of objects that could not be loaded:
+[<Dense name=dense_3, built=True>]
+  warnings.warn(msg)
+Initialized from weights with skip_mismatch: results/mtl_unsupervised.last.weights.h5
+==== Unsupervised MTL Training ====
+Sionna available: False
+K=16, M=8, N_RB=8, U_max=2, R_max=1
+P_tot=10.0000, P_RB_max=2.0000, sigma2=1.800e-15
+QoS target rate=370327.178 bps/user, gamma_ref=5.00 dB
+Loss weights: w_sched=1.000, w_beam=1.000, w_power=2.000, qos_weight=5.000
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=1, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=1, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=1, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=1, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=1, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=1, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=1, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=1, step=200/200)
+[epoch 001] L=1830354.5481 (S=0.8332, B=14.5368, P=915169.5884) SR=8986325.43 Ruser=561645.34 QoS_ok=0.3183 Ptot=4.2286
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=2, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=2, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=2, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=2, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=2, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=2, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=2, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=2, step=200/200)
+[epoch 002] L=425275.9959 (S=0.7203, B=9.1190, P=212633.0783) SR=8158201.40 Ruser=509887.59 QoS_ok=0.6270 Ptot=1.2850
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=3, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=3, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=3, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=3, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=3, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=3, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=3, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=3, step=200/200)
+[epoch 003] L=126492.9301 (S=0.4455, B=5.3628, P=63243.5610) SR=8717916.49 Ruser=544869.78 QoS_ok=0.8351 Ptot=1.2575
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=4, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=4, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=4, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=4, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=4, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=4, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=4, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=4, step=200/200)
+[epoch 004] L=10385.4772 (S=0.1728, B=3.7615, P=5190.7715) SR=9042561.68 Ruser=565160.11 QoS_ok=0.9731 Ptot=1.3334
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=5, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=5, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=5, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=5, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=5, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=5, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=5, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=5, step=200/200)
+[epoch 005] L=2607.1644 (S=0.1144, B=3.5189, P=1301.7655) SR=9174402.16 Ruser=573400.14 QoS_ok=0.9910 Ptot=1.3273
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=6, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=6, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=6, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=6, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=6, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=6, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=6, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=6, step=200/200)
+[epoch 006] L=1115.3637 (S=0.0906, B=3.4295, P=555.9218) SR=9260299.29 Ruser=578768.70 QoS_ok=0.9956 Ptot=1.3158
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=7, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=7, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=7, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=7, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=7, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=7, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=7, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=7, step=200/200)
+[epoch 007] L=519.9791 (S=0.0780, B=3.3779, P=258.2616) SR=9333422.73 Ruser=583338.93 QoS_ok=0.9978 Ptot=1.3083
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=8, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=8, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=8, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=8, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=8, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=8, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=8, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=8, step=200/200)
+[epoch 008] L=340.0014 (S=0.0721, B=3.3455, P=168.2918) SR=9376942.32 Ruser=586058.89 QoS_ok=0.9985 Ptot=1.3006
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=9, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=9, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=9, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=9, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=9, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=9, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=9, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=9, step=200/200)
+[epoch 009] L=233.4238 (S=0.0689, B=3.3218, P=115.0166) SR=9419821.66 Ruser=588738.86 QoS_ok=0.9989 Ptot=1.2934
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=10, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=10, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=10, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=10, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=10, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=10, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=10, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=10, step=200/200)
+[epoch 010] L=146.9247 (S=0.0615, B=3.3026, P=71.7803) SR=9450991.66 Ruser=590686.98 QoS_ok=0.9992 Ptot=1.2901
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=11, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=11, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=11, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=11, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=11, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=11, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=11, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=11, step=200/200)
+[epoch 011] L=111.2298 (S=0.0658, B=3.2939, P=53.9350) SR=9468792.55 Ruser=591799.54 QoS_ok=0.9994 Ptot=1.2880
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=12, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=12, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=12, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=12, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=12, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=12, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=12, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=12, step=200/200)
+[epoch 012] L=100.9313 (S=0.0595, B=3.2798, P=48.7960) SR=9503732.44 Ruser=593983.28 QoS_ok=0.9995 Ptot=1.2879
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=13, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=13, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=13, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=13, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=13, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=13, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=13, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=13, step=200/200)
+[epoch 013] L=73.8841 (S=0.0614, B=3.2723, P=35.2751) SR=9515541.28 Ruser=594721.33 QoS_ok=0.9996 Ptot=1.2838
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=14, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=14, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=14, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=14, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=14, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=14, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=14, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=14, step=200/200)
+[epoch 014] L=76.9477 (S=0.0585, B=3.2615, P=36.8138) SR=9531035.81 Ruser=595689.74 QoS_ok=0.9995 Ptot=1.2822
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=15, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=15, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=15, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=15, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=15, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=15, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=15, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=15, step=200/200)
+[epoch 015] L=49.8437 (S=0.0494, B=3.2490, P=23.2726) SR=9556589.79 Ruser=597286.86 QoS_ok=0.9997 Ptot=1.2796
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=16, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=16, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=16, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=16, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=16, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=16, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=16, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=16, step=200/200)
+[epoch 016] L=56.0210 (S=0.0606, B=3.2473, P=26.3565) SR=9559807.47 Ruser=597487.97 QoS_ok=0.9997 Ptot=1.2790
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=17, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=17, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=17, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=17, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=17, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=17, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=17, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=17, step=200/200)
+[epoch 017] L=51.2283 (S=0.0507, B=3.2372, P=23.9702) SR=9575915.40 Ruser=598494.71 QoS_ok=0.9997 Ptot=1.2791
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=18, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=18, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=18, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=18, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=18, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=18, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=18, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=18, step=200/200)
+[epoch 018] L=46.9988 (S=0.0572, B=3.2325, P=21.8546) SR=9589363.40 Ruser=599335.21 QoS_ok=0.9997 Ptot=1.2780
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=19, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=19, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=19, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=19, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=19, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=19, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=19, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=19, step=200/200)
+[epoch 019] L=34.5210 (S=0.0512, B=3.2260, P=15.6219) SR=9619895.85 Ruser=601243.49 QoS_ok=0.9998 Ptot=1.2727
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=20, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=20, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=20, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=20, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=20, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=20, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=20, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=20, step=200/200)
+[epoch 020] L=27.8103 (S=0.0457, B=3.2229, P=12.2708) SR=9621813.81 Ruser=601363.37 QoS_ok=0.9999 Ptot=1.2706
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=21, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=21, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=21, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=21, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=21, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=21, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=21, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=21, step=200/200)
+[epoch 021] L=31.0532 (S=0.0416, B=3.2195, P=13.8961) SR=9629267.41 Ruser=601829.22 QoS_ok=0.9999 Ptot=1.2715
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=22, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=22, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=22, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=22, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=22, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=22, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=22, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=22, step=200/200)
+[epoch 022] L=23.9684 (S=0.0419, B=3.2140, P=10.3563) SR=9648454.59 Ruser=603028.41 QoS_ok=0.9999 Ptot=1.2718
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=23, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=23, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=23, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=23, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=23, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=23, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=23, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=23, step=200/200)
+[epoch 023] L=18.4606 (S=0.0475, B=3.2162, P=7.5985) SR=9636282.01 Ruser=602267.62 QoS_ok=0.9999 Ptot=1.2711
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=24, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=24, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=24, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=24, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=24, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=24, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=24, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=24, step=200/200)
+[epoch 024] L=16.8766 (S=0.0484, B=3.2111, P=6.8085) SR=9669790.26 Ruser=604361.89 QoS_ok=0.9999 Ptot=1.2691
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=25, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=25, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=25, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=25, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=25, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=25, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=25, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=25, step=200/200)
+[epoch 025] L=14.3278 (S=0.0430, B=3.2163, P=5.5342) SR=9637773.79 Ruser=602360.86 QoS_ok=0.9999 Ptot=1.2668
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=26, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=26, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=26, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=26, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=26, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=26, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=26, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=26, step=200/200)
+[epoch 026] L=13.3602 (S=0.0500, B=3.2124, P=5.0489) SR=9662151.47 Ruser=603884.47 QoS_ok=0.9999 Ptot=1.2673
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=27, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=27, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=27, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=27, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=27, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=27, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=27, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=27, step=200/200)
+[epoch 027] L=14.5405 (S=0.0606, B=3.2138, P=5.6331) SR=9666939.69 Ruser=604183.73 QoS_ok=0.9999 Ptot=1.2666
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=28, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=28, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=28, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=28, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=28, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=28, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=28, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=28, step=200/200)
+[epoch 028] L=15.3806 (S=0.0706, B=3.2154, P=6.0473) SR=9661739.41 Ruser=603858.71 QoS_ok=0.9999 Ptot=1.2630
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=29, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=29, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=29, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=29, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=29, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=29, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=29, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=29, step=200/200)
+[epoch 029] L=21.4291 (S=0.0564, B=3.2094, P=9.0817) SR=9680548.07 Ruser=605034.26 QoS_ok=0.9999 Ptot=1.2636
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=30, step=25/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=30, step=50/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=30, step=75/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=30, step=100/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=30, step=125/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=30, step=150/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=30, step=175/200)
+Step-checkpoint saved: results/mtl_unsupervised.last.weights.h5 (epoch=30, step=200/200)
+[epoch 030] L=17.2493 (S=0.0755, B=3.2080, P=6.9829) SR=9688250.39 Ruser=605515.65 QoS_ok=0.9999 Ptot=1.2633
+Checkpoint saved: results/mtl_unsupervised.last.weights.h5
+Saved weights: results/mtl_unsupervised.weights.h5
+Saved history: results/mtl_unsupervised_history.csv
