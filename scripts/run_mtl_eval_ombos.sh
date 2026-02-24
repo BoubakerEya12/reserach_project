@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_DIR="${PROJECT_DIR:-$HOME/mtl_project/master1-main}"
-PYTHON_CMD="${PYTHON_CMD:-python}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DEFAULT_PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+PROJECT_DIR="${PROJECT_DIR:-$DEFAULT_PROJECT_DIR}"
+if [[ -n "${PYTHON_CMD:-}" ]]; then
+  PYTHON_CMD="${PYTHON_CMD}"
+elif [[ -x "${PROJECT_DIR}/venv_mtl/bin/python" ]]; then
+  PYTHON_CMD="${PROJECT_DIR}/venv_mtl/bin/python"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON_CMD="$(command -v python3)"
+else
+  PYTHON_CMD="$(command -v python)"
+fi
 WEIGHTS_PATH="${WEIGHTS_PATH:-results/mtl_unsupervised.last.weights.h5}"
 
 if [[ ! -d "${PROJECT_DIR}" ]]; then

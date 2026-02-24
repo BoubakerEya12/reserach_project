@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DEFAULT_PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
 SESSION_NAME="${SESSION_NAME:-mtl_train}"
-PROJECT_DIR="${PROJECT_DIR:-$HOME/mtl_project/master1-main}"
-PYTHON_CMD="${PYTHON_CMD:-python}"
+PROJECT_DIR="${PROJECT_DIR:-$DEFAULT_PROJECT_DIR}"
+if [[ -n "${PYTHON_CMD:-}" ]]; then
+  PYTHON_CMD="${PYTHON_CMD}"
+elif [[ -x "${PROJECT_DIR}/venv_mtl/bin/python" ]]; then
+  PYTHON_CMD="${PROJECT_DIR}/venv_mtl/bin/python"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON_CMD="$(command -v python3)"
+else
+  PYTHON_CMD="$(command -v python)"
+fi
 
 if [[ ! -d "${PROJECT_DIR}" ]]; then
   echo "ERROR: PROJECT_DIR not found: ${PROJECT_DIR}"
@@ -24,6 +35,7 @@ fi
 
 TRAIN_CMD="${PYTHON_CMD} -m scripts.train_mtl_unsupervised \
   ${INIT_ARG} \
+  --skip_mismatch_init \
   --epochs 30 --steps_per_epoch 200 --batch_size 64 \
   --lr 3e-4 \
   --gamma_qos_db 5 \
@@ -46,6 +58,8 @@ if tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
 fi
 
 echo "Creating tmux session '${SESSION_NAME}' and starting training..."
+TMUX_TMPDIR="${TMUX_TMPDIR:-${PROJECT_DIR}/.tmux}"
+mkdir -p "${TMUX_TMPDIR}"
+export TMUX_TMPDIR
 tmux new-session -d -s "${SESSION_NAME}" "cd '${PROJECT_DIR}' && ${TRAIN_CMD}"
 tmux attach -t "${SESSION_NAME}"
-

@@ -70,6 +70,7 @@ def main():
     ap.add_argument("--rate_target_bps", type=float, default=None)
     ap.add_argument("--gamma_qos_db", type=float, default=5.0)
     ap.add_argument("--init_weights", type=str, default="")
+    ap.add_argument("--skip_mismatch_init", action="store_true")
     ap.add_argument("--save_every", type=int, default=1)
     ap.add_argument("--save_every_steps", type=int, default=0)
     ap.add_argument("--save_dir", type=str, default="results")
@@ -107,8 +108,15 @@ def main():
     )
     _ = model(dummy, training=False)
     if args.init_weights:
-        model.load_weights(args.init_weights)
-        print(f"Initialized from weights: {args.init_weights}")
+        try:
+            model.load_weights(args.init_weights)
+            print(f"Initialized from weights: {args.init_weights}")
+        except Exception:
+            if args.skip_mismatch_init:
+                model.load_weights(args.init_weights, skip_mismatch=True)
+                print(f"Initialized from weights with skip_mismatch: {args.init_weights}")
+            else:
+                raise
 
     if args.rate_target_bps is None:
         gamma_lin = float(10.0 ** (args.gamma_qos_db / 10.0))
